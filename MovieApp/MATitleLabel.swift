@@ -25,7 +25,7 @@ class MATitleLabel: UILabel {
     }
 
     private func configure() {
-        textColor = .label
+        textColor = .systemBlue
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingTail
