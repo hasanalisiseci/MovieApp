@@ -17,7 +17,7 @@ class FirebaseManager {
     private init() {
     }
 
-    public func fetchRCValues(completed: @escaping (Result<String, Error>) -> Void) {
+    public func fetchRCValues(fetchedValue: String, completed: @escaping (Result<String, Error>) -> Void) {
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 0
         remoteConfig.configSettings = settings
@@ -29,7 +29,7 @@ class FirebaseManager {
                         return
                     }
 
-                    let value = self.remoteConfig.configValue(forKey: Constants.remote_config_app_name).stringValue
+                    let value = self.remoteConfig.configValue(forKey: fetchedValue).stringValue
                     self.titleText = value ?? ""
                     completed(.success(self.titleText))
                 }

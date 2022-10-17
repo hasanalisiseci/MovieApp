@@ -30,7 +30,17 @@ class SearchVC: UIViewController, UITextFieldDelegate {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.setHidesBackButton(true, animated: true)
-        navigationItem.title = "MovieApp"
+        FirebaseManager.shared.fetchRCValues(fetchedValue: RemoteConfigConstants.nav_bar_title) { result in
+            switch result {
+            case let .success(title):
+                DispatchQueue.main.async {
+                    self.navigationItem.title = title
+                }
+            case let .failure(error):
+                self.showAlert(alertText: Constants.fetch_problem_title,
+                               alertMessage: error.localizedDescription)
+            }
+        }
     }
 
     private func configureSearchBar() {
