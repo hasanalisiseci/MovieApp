@@ -25,6 +25,9 @@ class SplashVC: UIViewController {
                     DispatchQueue.main.async {
                         self.splashTitleLabel.text = success
                     }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.navigationController?.pushViewController(SearchVC(), animated: true)
+                    }
                 case let .failure(error):
                     self.showAlert(alertText: Constants.fetch_problem_title,
                                    alertMessage: error.localizedDescription)

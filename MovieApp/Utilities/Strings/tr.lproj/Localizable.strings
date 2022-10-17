@@ -9,3 +9,5 @@
 "alert_network_problem_description" = "İnternet bağlantınızı kontrol edin.";
 "fetch_problem_title" = "Veri Getirme Sorunu";
 "okay" = "Tamam";
+"search_movie_name" = "Film ismi arayın";
+"search" = "Film Ara";

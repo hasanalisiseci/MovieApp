@@ -9,3 +9,5 @@
 "alert_network_problem_description" = "Check your internet connect.";
 "fetch_problem_title" = "Fetch problem";
 "okay" = "OK";
+"search_movie_name" = "Search movie name...";
+"search" = "Search Movie";

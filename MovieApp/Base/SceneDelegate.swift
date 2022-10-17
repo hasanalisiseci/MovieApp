@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = SplashVC()
+        window?.rootViewController = UINavigationController(rootViewController: SplashVC())
         window?.makeKeyAndVisible()
 
         configureNavigationBar()
@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func configureNavigationBar() {
         // Eğer tint color'ı vermezsek back button yokmuş gibi görünür!
-        UINavigationBar.appearance().tintColor = .systemGreen
+        UINavigationBar.appearance().tintColor = .systemPink
         // Standart oluşturulan navbar üzerinde kalan boşluk için çözüm
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()

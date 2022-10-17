@@ -13,4 +13,6 @@ class Constants {
     static let alert_network_problem_description = "alert_network_problem_description".localized()
     static let fetch_problem_title = "fetch_problem_title".localized()
     static let okay = "okay".localized()
+    static let search = "search".localized()
+    static let search_movie_name = "search_movie_name".localized()
 }
