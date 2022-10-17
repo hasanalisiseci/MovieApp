@@ -9,7 +9,7 @@ import FirebaseRemoteConfig
 import UIKit
 
 class SplashVC: UIViewController {
-    private var splashTitleLabel = MATitleLabel(textAlignment: .center, fontSize: 40)
+    private var splashTitleLabel = MATitleLabel(textAlignment: .center, fontSize: 50)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +26,14 @@ class SplashVC: UIViewController {
                         self.splashTitleLabel.text = success
                     }
                 case let .failure(error):
-                    self.showAlert(alertText: "Fetch Problem", alertMessage: error.localizedDescription)
+                    self.showAlert(alertText: Constants.fetch_problem_title,
+                                   alertMessage: error.localizedDescription)
                 }
             }
 
         } else {
-            showAlert(alertText: "Network Problem", alertMessage: "Check your internet connect.")
+            showAlert(alertText: Constants.alert_network_problem_title,
+                      alertMessage: Constants.alert_network_problem_description)
         }
     }
 
@@ -46,7 +48,7 @@ class SplashVC: UIViewController {
 
         let padding: CGFloat = 50
         let topDistance: CGFloat = view.bounds.height / 2
-        let labelHeight: CGFloat = 30
+        let labelHeight: CGFloat = 50
 
         NSLayoutConstraint.activate([
             splashTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: topDistance),

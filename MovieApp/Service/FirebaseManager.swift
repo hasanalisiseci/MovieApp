@@ -29,7 +29,7 @@ class FirebaseManager {
                         return
                     }
 
-                    let value = self.remoteConfig.configValue(forKey: "splash_title_label_text").stringValue
+                    let value = self.remoteConfig.configValue(forKey: Constants.remote_config_app_name).stringValue
                     self.titleText = value ?? ""
                     completed(.success(self.titleText))
                 }

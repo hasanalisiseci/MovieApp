@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MovieApp
+
+  Created by Hasan Ali Şişeci on 17.10.2022.
+  
+*/
+"alert_network_problem_title" = "Network Problem";
+"alert_network_problem_description" = "Check your internet connect.";
+"fetch_problem_title" = "Fetch problem";
+"okay" = "OK";

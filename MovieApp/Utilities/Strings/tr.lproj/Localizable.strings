@@ -1,0 +1,11 @@
+/*
+   Localizable.strings
+   MovieApp
+
+   Created by Hasan Ali Şişeci on 17.10.2022.
+
+ */
+"alert_network_problem_title" = "Ağ Sorunu";
+"alert_network_problem_description" = "İnternet bağlantınızı kontrol edin.";
+"fetch_problem_title" = "Veri Getirme Sorunu";
+"okay" = "Tamam";
