@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7413CCF628FE8A0100E899B1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CCF528FE8A0100E899B1 /* NetworkManager.swift */; };
+		7413CCF828FE8B2E00E899B1 /* MAErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CCF728FE8B2E00E899B1 /* MAErrorType.swift */; };
+		7413CCFC28FEA37300E899B1 /* OMDbEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CCFB28FEA37300E899B1 /* OMDbEndpoint.swift */; };
+		7413CCFE28FEAE6300E899B1 /* MovieResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CCFD28FEAE6300E899B1 /* MovieResultModel.swift */; };
+		7413CD0028FEB09D00E899B1 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CCFF28FEB09D00E899B1 /* Int+Extension.swift */; };
+		7413CD0528FEC66800E899B1 /* MovieDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CD0428FEC66800E899B1 /* MovieDetailModel.swift */; };
+		7413CD0728FECE1E00E899B1 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CD0628FECE1E00E899B1 /* MovieModel.swift */; };
+		7413CD0928FECE8800E899B1 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CD0828FECE8800E899B1 /* FirebaseManager.swift */; };
 		74B2FC1428FD895100A55BB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC1328FD895100A55BB7 /* AppDelegate.swift */; };
 		74B2FC1628FD895100A55BB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC1528FD895100A55BB7 /* SceneDelegate.swift */; };
 		74B2FC1D28FD895300A55BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74B2FC1C28FD895300A55BB7 /* Assets.xcassets */; };
@@ -19,7 +27,6 @@
 		74B2FC3D28FD9AA500A55BB7 /* MATitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC3C28FD9AA400A55BB7 /* MATitleLabel.swift */; };
 		74B2FC4128FDA9B100A55BB7 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC4028FDA9B100A55BB7 /* NetworkMonitor.swift */; };
 		74B2FC4328FDB8A300A55BB7 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC4228FDB8A300A55BB7 /* UIViewController+Extension.swift */; };
-		74B2FC4728FDBD2900A55BB7 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC4628FDBD2900A55BB7 /* FirebaseManager.swift */; };
 		74B2FC5128FDEF1500A55BB7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC5028FDEF1500A55BB7 /* Constants.swift */; };
 		74B2FC5728FDEF3900A55BB7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74B2FC5628FDEF2A00A55BB7 /* Localizable.strings */; };
 		74B2FC5C28FDEFE900A55BB7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC5B28FDEFE900A55BB7 /* String+Extension.swift */; };
@@ -29,6 +36,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7413CCF528FE8A0100E899B1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		7413CCF728FE8B2E00E899B1 /* MAErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAErrorType.swift; sourceTree = "<group>"; };
+		7413CCFB28FEA37300E899B1 /* OMDbEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMDbEndpoint.swift; sourceTree = "<group>"; };
+		7413CCFD28FEAE6300E899B1 /* MovieResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResultModel.swift; sourceTree = "<group>"; };
+		7413CCFF28FEB09D00E899B1 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		7413CD0428FEC66800E899B1 /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
+		7413CD0628FECE1E00E899B1 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		7413CD0828FECE8800E899B1 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		74B2FC1028FD895100A55BB7 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B2FC1328FD895100A55BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74B2FC1528FD895100A55BB7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +54,6 @@
 		74B2FC3C28FD9AA400A55BB7 /* MATitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MATitleLabel.swift; sourceTree = "<group>"; };
 		74B2FC4028FDA9B100A55BB7 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		74B2FC4228FDB8A300A55BB7 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		74B2FC4628FDBD2900A55BB7 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		74B2FC5028FDEF1500A55BB7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		74B2FC5528FDEF2A00A55BB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74B2FC5A28FDEF6500A55BB7 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -64,6 +78,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7413CCF928FE91D200E899B1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7413CCF528FE8A0100E899B1 /* NetworkManager.swift */,
+				7413CD0828FECE8800E899B1 /* FirebaseManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7413CCFA28FE91DF00E899B1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				7413CCF728FE8B2E00E899B1 /* MAErrorType.swift */,
+				7413CCFB28FEA37300E899B1 /* OMDbEndpoint.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		7413CD0128FEB6BC00E899B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7413CCFD28FEAE6300E899B1 /* MovieResultModel.swift */,
+				7413CD0428FEC66800E899B1 /* MovieDetailModel.swift */,
+				7413CD0628FECE1E00E899B1 /* MovieModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		74B2FC0728FD895100A55BB7 = {
 			isa = PBXGroup;
 			children = (
@@ -142,7 +184,9 @@
 		74B2FC4B28FDEE9F00A55BB7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				74B2FC4628FDBD2900A55BB7 /* FirebaseManager.swift */,
+				7413CCF928FE91D200E899B1 /* Managers */,
+				7413CCFA28FE91DF00E899B1 /* Enums */,
+				7413CD0128FEB6BC00E899B1 /* Model */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -152,6 +196,7 @@
 			children = (
 				74B2FC4228FDB8A300A55BB7 /* UIViewController+Extension.swift */,
 				74B2FC5B28FDEFE900A55BB7 /* String+Extension.swift */,
+				7413CCFF28FEB09D00E899B1 /* Int+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,13 +319,20 @@
 			files = (
 				74B2FC6128FDF58F00A55BB7 /* MATextField.swift in Sources */,
 				74B2FC4128FDA9B100A55BB7 /* NetworkMonitor.swift in Sources */,
+				7413CD0528FEC66800E899B1 /* MovieDetailModel.swift in Sources */,
 				74B2FC5C28FDEFE900A55BB7 /* String+Extension.swift in Sources */,
+				7413CD0028FEB09D00E899B1 /* Int+Extension.swift in Sources */,
+				7413CCF628FE8A0100E899B1 /* NetworkManager.swift in Sources */,
+				7413CCF828FE8B2E00E899B1 /* MAErrorType.swift in Sources */,
 				74B2FC6328FDF69800A55BB7 /* MAButton.swift in Sources */,
+				7413CD0728FECE1E00E899B1 /* MovieModel.swift in Sources */,
+				7413CD0928FECE8800E899B1 /* FirebaseManager.swift in Sources */,
 				74B2FC3D28FD9AA500A55BB7 /* MATitleLabel.swift in Sources */,
-				74B2FC4728FDBD2900A55BB7 /* FirebaseManager.swift in Sources */,
+				7413CCFC28FEA37300E899B1 /* OMDbEndpoint.swift in Sources */,
 				74B2FC2E28FD8D5A00A55BB7 /* SplashVC.swift in Sources */,
 				74B2FC4328FDB8A300A55BB7 /* UIViewController+Extension.swift in Sources */,
 				74B2FC5F28FDF1CE00A55BB7 /* SearchVC.swift in Sources */,
+				7413CCFE28FEAE6300E899B1 /* MovieResultModel.swift in Sources */,
 				74B2FC1428FD895100A55BB7 /* AppDelegate.swift in Sources */,
 				74B2FC1628FD895100A55BB7 /* SceneDelegate.swift in Sources */,
 				74B2FC5128FDEF1500A55BB7 /* Constants.swift in Sources */,
