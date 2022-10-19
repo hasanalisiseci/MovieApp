@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct Movie: Codable, Hashable {
     let title, year, imdbID: String?
     let type: ContentType?
     let poster: String?

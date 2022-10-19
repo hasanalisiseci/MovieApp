@@ -9,7 +9,7 @@ import FirebaseRemoteConfig
 import UIKit
 
 class SplashVC: UIViewController {
-    private var splashTitleLabel = MATitleLabel(textAlignment: .center, fontSize: 50)
+    private var splashTitleLabel = MATitleLabel(textAlignment: .center, fontSize: 50, color: .systemBlue)
 
     override func viewDidLoad() {
         super.viewDidLoad()

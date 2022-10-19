@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class NetworkManager {
+    let cache = NSCache<NSString, UIImage>()
 
     func getData<T: Decodable>(endpoint: URL, completed: @escaping (Result<T, MAErrorType>) -> Void) {
         guard let url = URL(string: endpoint.absoluteString) else {

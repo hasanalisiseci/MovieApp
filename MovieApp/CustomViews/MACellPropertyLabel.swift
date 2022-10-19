@@ -1,13 +1,13 @@
 //
-//  MATitleLabel.swift
+//  MACellPropertyLabel.swift
 //  MovieApp
 //
-//  Created by Hasan Ali Şişeci on 17.10.2022.
+//  Created by Hasan Ali Şişeci on 19.10.2022.
 //
 
 import UIKit
 
-class MATitleLabel: UILabel {
+class MACellPropertyLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -17,18 +17,18 @@ class MATitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat, color: UIColor) {
+    init(textAlignment: NSTextAlignment) {
         super.init(frame: .zero)
         self.textAlignment = textAlignment
-        font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        textColor = color
         configure()
     }
 
     private func configure() {
+        textColor = .systemBackground
+        font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.9
-        lineBreakMode = .byTruncatingTail
+        minimumScaleFactor = 0.75
+        lineBreakMode = .byWordWrapping
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
