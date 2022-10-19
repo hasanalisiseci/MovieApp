@@ -7,18 +7,15 @@
 
 import UIKit
 
-class SearchVC: UIViewController, UITextFieldDelegate {
-    let movieSearchBar = MATextField()
-    let searchToMovieButton = MAButton(backgroundColor: .systemBlue, title: Constants.search)
-
-    var isUsernameEntered: Bool { return !movieSearchBar.text!.isEmpty }
+class SearchVC: UIViewController, UISearchBarDelegate {
+    lazy var searchBar: UISearchBar = MASearchBar()
+    var isSearch: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPink
+        hideKeyboardWhenTappedAround()
         configureSearchBar()
-        configureButton()
-        createDissmisKeyboardTapGesture()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,46 +25,12 @@ class SearchVC: UIViewController, UITextFieldDelegate {
 
     private func configuerNavBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.setHidesBackButton(true, animated: true)
-        FirebaseManager.shared.fetchRCValues(fetchedValue: RemoteConfigConstants.nav_bar_title) { result in
-            switch result {
-            case let .success(title):
-                DispatchQueue.main.async {
-                    self.navigationItem.title = title
-                }
-            case let .failure(error):
-                self.showAlert(alertText: Constants.fetch_problem_title,
-                               alertMessage: error.localizedDescription)
-            }
-        }
     }
 
     private func configureSearchBar() {
-        view.addSubview(movieSearchBar)
-        movieSearchBar.delegate = self
-
-        NSLayoutConstraint.activate([
-            movieSearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            movieSearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            movieSearchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            movieSearchBar.heightAnchor.constraint(equalToConstant: 50),
-        ])
-    }
-
-    private func configureButton() {
-        view.addSubview(searchToMovieButton)
-        searchToMovieButton.addTarget(self, action: #selector(searchMovie), for: .touchUpInside)
-
-        NSLayoutConstraint.activate([
-            searchToMovieButton.topAnchor.constraint(equalTo: movieSearchBar.bottomAnchor, constant: 50),
-            searchToMovieButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            searchToMovieButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            searchToMovieButton.heightAnchor.constraint(equalToConstant: 50),
-        ])
-    }
-
-    @objc func searchMovie() {
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
     }
 
     func createDissmisKeyboardTapGesture() {
@@ -76,8 +39,33 @@ class SearchVC: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension SearchVC: UISearchTextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
+extension SearchVC {
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if searchBar.text?.count == 0 {
+            showAlert(alertText: "Boş Arama Yapılamaz", alertMessage: "Lütfen film adı girin!")
+        } else {
+            NetworkManager().getData(endpoint: OMDbEndpoint.search(String(describing: searchBar.text!.utf8), 1).url) { [weak self] (result: Result<MoviesResult, MAErrorType>) in
+                guard let self = self else { return }
+                switch result {
+                case let .success(success):
+                    if success.movies == nil {
+                        self.showAlert(alertText: "HATA", alertMessage: "Aradığınız film bulunamadı!")
+                    } else {
+                        print(success)
+                    }
+                case let .failure(failure):
+                    self.showAlert(alertText: "HATA", alertMessage: failure.localizedDescription)
+                }
+            }
+        }
     }
 }

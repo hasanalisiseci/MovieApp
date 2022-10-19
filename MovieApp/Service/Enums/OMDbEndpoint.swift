@@ -8,7 +8,6 @@
 import Foundation
 
 enum OMDbEndpoint {
-    
     private var baseURL: String { return "https://www.omdbapi.com/?" }
     private var apiKey: String { return "apiKey=3e9f07f2" }
     private var searchParameter: String { return "&s=" }
@@ -25,17 +24,19 @@ enum OMDbEndpoint {
         case let .search(searchValue, pageValue):
             let mutableString = NSMutableString(string: searchValue) as CFMutableString
             CFStringTransform(mutableString, nil, kCFStringTransformStripCombiningMarks, Bool(truncating: 0))
-            let movie = (mutableString as NSMutableString).copy() as! NSString
+            var movie = (mutableString as NSMutableString).copy() as! NSString
+            movie = movie.trimmingCharacters(in: .whitespaces) as NSString
+
             endpoint = "\(searchParameter)\(movie.replacingOccurrences(of: " ", with: "+"))\(pageParameter)\(pageValue.toStr())"
         case let .detail(imdbValue, plotValue):
             endpoint = "\(imdbIdParameter)\(imdbValue)\(plotParameter)\(plotValue)"
         }
         print("\(baseURL + apiKey + endpoint)")
-        return baseURL + apiKey + endpoint + "/"
+        return baseURL + apiKey + endpoint
     }
 
     var url: URL {
-        return URL(string: fullPath)!
+        return URL(string: fullPath) ?? URL(string: baseURL)!
     }
 }
 
