@@ -11,8 +11,8 @@ import UIKit
 class NetworkManager {
     let cache = NSCache<NSString, UIImage>()
 
-    func getData<T: Decodable>(endpoint: URL, completed: @escaping (Result<T, MAErrorType>) -> Void) {
-        guard let url = URL(string: endpoint.absoluteString) else {
+    func getData<T: Decodable>(endpoint: OMDbEndpoint, completed: @escaping (Result<T, MAErrorType>) -> Void) {
+        guard let url = URL(string: endpoint.url) else {
             completed(.failure(.invalidURL))
             return
         }
@@ -35,7 +35,6 @@ class NetworkManager {
 
             do {
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let result = try decoder.decode(T.self, from: data)
                 completed(.success(result))
             } catch {
@@ -47,20 +46,21 @@ class NetworkManager {
         task.resume()
     }
 
-    func errorHandling(data: Data?) -> APIErrorModel {
+    func errorHandling(data: Data?) -> ErrorModel {
         let decoder = JSONDecoder()
 
         guard let data = data else {
-            return APIErrorModel(response: "Error", error: "No Data")
+            return ErrorModel(response: "Error", error: "No Data")
         }
-
-        guard let decodedResponse = try? decoder.decode(APIErrorModel.self, from: data) else { return APIErrorModel(response: "Error", error: "Decode Error") }
+        
+        guard let decodedResponse = try? decoder.decode(ErrorModel.self, from: data) else { return ErrorModel(response: "Error", error: "Decode Error") }
+        print(decodedResponse)
 
         return decodedResponse
     }
 }
 
-struct APIErrorModel: Codable, Error {
+struct ErrorModel: Codable, Error {
     let response, error: String?
 
     enum CodingKeys: String, CodingKey {
@@ -69,15 +69,7 @@ struct APIErrorModel: Codable, Error {
     }
 }
 
-/* NetworkManager().getMovies(endpoint: OMDbEndpoint.search(String(describing: movieSearchBar.text!.utf8), 1).url) { [weak self] (result: Result<MovieResult, MAErrorType>) in
-      guard let self = self else { return }
-     switch result {
-     case let .success(success):
-         print(success)
-     case let .failure(failure):
-         print(failure)
-     }
- }
+/*
   NetworkManager().getMovies(endpoint: OMDbEndpoint.detail("tt0096895", "full").url) { [weak self] (result: Result<MovieDetail, MAErrorType>) in
       guard let self = self else { return }
      switch result {

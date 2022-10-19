@@ -26,17 +26,16 @@ enum OMDbEndpoint {
             CFStringTransform(mutableString, nil, kCFStringTransformStripCombiningMarks, Bool(truncating: 0))
             var movie = (mutableString as NSMutableString).copy() as! NSString
             movie = movie.trimmingCharacters(in: .whitespaces) as NSString
-
-            endpoint = "\(searchParameter)\(movie.replacingOccurrences(of: " ", with: "+"))\(pageParameter)\(pageValue.toStr())"
+            movie = movie.replacingOccurrences(of: " ", with: "+") as NSString
+            endpoint = "\(searchParameter)\(movie)\(pageParameter)\(pageValue.toStr())"
         case let .detail(imdbValue, plotValue):
             endpoint = "\(imdbIdParameter)\(imdbValue)\(plotParameter)\(plotValue)"
         }
-        print("\(baseURL + apiKey + endpoint)")
         return baseURL + apiKey + endpoint
     }
 
-    var url: URL {
-        return URL(string: fullPath) ?? URL(string: baseURL)!
+    var url: String {
+       fullPath
     }
 }
 

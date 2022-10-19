@@ -8,7 +8,7 @@
 import Foundation
 
 enum MAErrorType: Error {
-    case decodingError(model: APIErrorModel)
+    case decodingError(model: ErrorModel)
     case unableToComplete
     case invalidURL
     case invalidResponse
@@ -18,7 +18,7 @@ enum MAErrorType: Error {
     var message: String {
         switch self {
         case let .decodingError(model):
-            return model.error ?? "Decode Error"
+            return model.localizedDescription
         case .unableToComplete:
             return "Check your internet connection."
         case .invalidURL:

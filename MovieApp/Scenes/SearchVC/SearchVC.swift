@@ -58,7 +58,7 @@ class SearchVC: UIViewController, UISearchBarDelegate {
     }
 
     func getMovies(movieTitle: String, page: Int) {
-        NetworkManager().getData(endpoint: OMDbEndpoint.search(movieTitle, page).url) { [weak self] (result: Result<MoviesResult, MAErrorType>) in
+        NetworkManager().getData(endpoint: OMDbEndpoint.search(movieTitle, page)) { [weak self] (result: Result<MoviesResult, MAErrorType>) in
             guard let self = self else { return }
             switch result {
             case let .success(result):
@@ -106,7 +106,7 @@ extension SearchVC {
         } else {
             movies = []
             page = 1
-            getMovies(movieTitle: String(describing: searchBar.text!.utf8), page: page)
+            getMovies(movieTitle: searchBar.text!, page: page)
         }
     }
 }
@@ -120,7 +120,7 @@ extension SearchVC: UICollectionViewDelegate {
         if ofssetY > contentHeight - height {
             guard hasMoreMovie else { return }
             page += 1
-            getMovies(movieTitle: String(describing: searchBar.text!.utf8), page: page)
+            getMovies(movieTitle: searchBar.text!, page: page)
         }
     }
 }
