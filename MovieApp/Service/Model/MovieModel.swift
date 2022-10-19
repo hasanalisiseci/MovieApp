@@ -23,4 +23,5 @@ struct Movie: Codable, Hashable {
 enum ContentType: String, Codable {
     case movie
     case series
+    case game
 }

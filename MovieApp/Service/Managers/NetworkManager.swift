@@ -52,11 +52,9 @@ class NetworkManager {
         guard let data = data else {
             return ErrorModel(response: "Error", error: "No Data")
         }
-        
-        guard let decodedResponse = try? decoder.decode(ErrorModel.self, from: data) else { return ErrorModel(response: "Error", error: "Decode Error") }
-        print(decodedResponse)
 
-        return decodedResponse
+        guard let result = try? decoder.decode(ErrorModel.self, from: data) else { return ErrorModel(response: "Error", error: "Decode Error") }
+        return result
     }
 }
 
