@@ -30,5 +30,7 @@ class MATitleLabel: UILabel {
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
+        numberOfLines = 2
+        lineBreakMode = .byWordWrapping
     }
 }

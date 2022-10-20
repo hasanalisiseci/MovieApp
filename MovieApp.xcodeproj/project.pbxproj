@@ -15,6 +15,7 @@
 		7413CD0528FEC66800E899B1 /* MovieDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CD0428FEC66800E899B1 /* MovieDetailModel.swift */; };
 		7413CD0728FECE1E00E899B1 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CD0628FECE1E00E899B1 /* MovieModel.swift */; };
 		7413CD0928FECE8800E899B1 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413CD0828FECE8800E899B1 /* FirebaseManager.swift */; };
+		742B9A962900A0E2002FB399 /* MAIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742B9A952900A0E2002FB399 /* MAIconView.swift */; };
 		747DB2A02900173D002E658B /* MASearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DB29F2900173D002E658B /* MASearchBar.swift */; };
 		747DB2A229001AFC002E658B /* MAFilmCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DB2A129001AFC002E658B /* MAFilmCellCollectionViewCell.swift */; };
 		747DB2A429001B37002E658B /* MAImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DB2A329001B37002E658B /* MAImageView.swift */; };
@@ -48,6 +49,7 @@
 		7413CD0428FEC66800E899B1 /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
 		7413CD0628FECE1E00E899B1 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		7413CD0828FECE8800E899B1 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		742B9A952900A0E2002FB399 /* MAIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAIconView.swift; sourceTree = "<group>"; };
 		747DB29F2900173D002E658B /* MASearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MASearchBar.swift; sourceTree = "<group>"; };
 		747DB2A129001AFC002E658B /* MAFilmCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAFilmCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		747DB2A329001B37002E658B /* MAImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAImageView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				74B2FC6228FDF69800A55BB7 /* MAButton.swift */,
 				747DB29F2900173D002E658B /* MASearchBar.swift */,
 				747DB2A329001B37002E658B /* MAImageView.swift */,
+				742B9A952900A0E2002FB399 /* MAIconView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				7413CD0728FECE1E00E899B1 /* MovieModel.swift in Sources */,
 				7413CD0928FECE8800E899B1 /* FirebaseManager.swift in Sources */,
 				747DB2A429001B37002E658B /* MAImageView.swift in Sources */,
+				742B9A962900A0E2002FB399 /* MAIconView.swift in Sources */,
 				747DB2A229001AFC002E658B /* MAFilmCellCollectionViewCell.swift in Sources */,
 				74B2FC3D28FD9AA500A55BB7 /* MATitleLabel.swift in Sources */,
 				7413CCFC28FEA37300E899B1 /* OMDbEndpoint.swift in Sources */,

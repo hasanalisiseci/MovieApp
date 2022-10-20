@@ -11,9 +11,11 @@ class MAFilmCellCollectionViewCell: UICollectionViewCell {
     static let reuseID = "MovieCell"
 
     let moviePosterImage = MAImageView(frame: .zero)
-    let movieTitleLabel = MATitleLabel(textAlignment: .center, fontSize: 16, color: .systemBackground)
-    let yearTitleLabel = MACellPropertyLabel()
-    let movieOrSeriesLabel = MACellPropertyLabel()
+    let movieTitleLabel = MATitleLabel(textAlignment: .left, fontSize: 16, color: .systemBackground)
+    let yearTitleLabel = MACellPropertyLabel(textAlignment: .left)
+    let movieOrSeriesLabel = MACellPropertyLabel(textAlignment: .left)
+    let movieIcon = MAIconView(frame: .zero)
+    let yearIcon = MAIconView(frame: .zero)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +33,8 @@ class MAFilmCellCollectionViewCell: UICollectionViewCell {
         yearTitleLabel.text = movie.year
         movieOrSeriesLabel.text = movie.type?.rawValue
         moviePosterImage.downloadImage(from: movie.poster!)
+        movieIcon.configure(iconName: "video-camera")
+        yearIcon.configure(iconName: "calendar")
     }
 
     private func configure() {
@@ -38,6 +42,8 @@ class MAFilmCellCollectionViewCell: UICollectionViewCell {
         addSubview(movieTitleLabel)
         addSubview(yearTitleLabel)
         addSubview(movieOrSeriesLabel)
+        addSubview(movieIcon)
+        addSubview(yearIcon)
 
         let padding: CGFloat = 8
         let inPadding: CGFloat = 12
@@ -53,16 +59,25 @@ class MAFilmCellCollectionViewCell: UICollectionViewCell {
             movieTitleLabel.topAnchor.constraint(equalTo: moviePosterImage.bottomAnchor, constant: 12),
             movieTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             movieTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            movieTitleLabel.heightAnchor.constraint(equalToConstant: 20),
+
+            yearIcon.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 12),
+            yearIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -24),
+            yearIcon.trailingAnchor.constraint(equalTo: yearTitleLabel.leadingAnchor, constant: 20),
+            yearIcon.heightAnchor.constraint(equalToConstant: 20),
 
             yearTitleLabel.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 12),
-            yearTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            yearTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            yearTitleLabel.leadingAnchor.constraint(equalTo: yearIcon.trailingAnchor, constant: padding),
+            yearTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             yearTitleLabel.heightAnchor.constraint(equalToConstant: 20),
 
-            movieOrSeriesLabel.topAnchor.constraint(equalTo: yearTitleLabel.bottomAnchor, constant: 12),
-            movieOrSeriesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            movieOrSeriesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            movieIcon.topAnchor.constraint(equalTo: yearIcon.bottomAnchor, constant: 6),
+            movieIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -24),
+            movieIcon.trailingAnchor.constraint(equalTo: movieOrSeriesLabel.leadingAnchor, constant: 20),
+            movieIcon.heightAnchor.constraint(equalToConstant: 20),
+
+            movieOrSeriesLabel.topAnchor.constraint(equalTo: yearTitleLabel.bottomAnchor, constant: 6),
+            movieOrSeriesLabel.leadingAnchor.constraint(equalTo: movieIcon.trailingAnchor, constant: padding),
+            movieOrSeriesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             movieOrSeriesLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
     }

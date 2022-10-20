@@ -19,7 +19,6 @@ class MACellPropertyLabel: UILabel {
 
     init(textAlignment: NSTextAlignment) {
         super.init(frame: .zero)
-        self.textAlignment = textAlignment
         configure()
     }
 

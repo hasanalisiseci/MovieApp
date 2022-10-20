@@ -11,7 +11,7 @@ import UIKit
 class NetworkManager {
     let cache = NSCache<NSString, UIImage>()
 
-    func getData<T: Decodable>(endpoint: OMDbEndpoint, completed: @escaping (Result<T, MAErrorType>) -> Void) {
+    func getData<T: Codable>(endpoint: OMDbEndpoint, completed: @escaping (Result<T, MAErrorType>) -> Void) {
         guard let url = URL(string: endpoint.url) else {
             completed(.failure(.invalidURL))
             return
