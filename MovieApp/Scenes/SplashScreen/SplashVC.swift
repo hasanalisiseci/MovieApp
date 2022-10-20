@@ -19,7 +19,7 @@ class SplashVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if NetworkMonitor.shared.isConnected {
             configureTitleLabel()
-            FirebaseManager.shared.fetchRCValues(fetchedValue: RemoteConfigConstants.splash_title) { result in
+            FirebaseManager.shared.fetchRCValues(remoteConfigForKey: RemoteConfigConstants.splash_title) { result in
                 switch result {
                 case let .success(success):
                     DispatchQueue.main.async {

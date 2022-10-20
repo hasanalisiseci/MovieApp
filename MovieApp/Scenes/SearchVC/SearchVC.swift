@@ -33,6 +33,8 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         configureCollectionView()
         configureDataSource()
     }
+    
+
 
     private func configuerNavBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -125,6 +127,9 @@ extension SearchVC: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailVC(movie: movies[indexPath.count]), animated: true)
+        let destVC = DetailVC()
+        destVC.movie = movies[indexPath.item]
+        let navController = UINavigationController(rootViewController: destVC)
+        navigationController?.pushViewController(destVC, animated: true)
     }
 }

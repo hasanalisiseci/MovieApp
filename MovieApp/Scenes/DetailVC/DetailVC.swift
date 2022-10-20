@@ -8,8 +8,8 @@
 import UIKit
 
 class DetailVC: UIViewController {
-    var movie: Movie
-    var detailedMovie = MovieDetail()
+    var movie: Movie!
+    var detailedMovie: MovieDetail!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,14 +17,6 @@ class DetailVC: UIViewController {
         getMovieDetails()
     }
 
-    init(movie: Movie) {
-        self.movie = movie
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     func getMovieDetails() {
         NetworkManager().getData(endpoint: OMDbEndpoint.detail(movie.imdbID!, "full")) { [weak self] (result: Result<MovieDetail, MAErrorType>) in

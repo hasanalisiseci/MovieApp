@@ -5,14 +5,6 @@
 //  Created by Hasan Ali Şişeci on 18.10.2022.
 //
 
-import Foundation
-//
-//  FirebaseManager.swift
-//  MovieApp
-//
-//  Created by Hasan Ali Şişeci on 17.10.2022.
-//
-
 import FirebaseRemoteConfig
 import Foundation
 
@@ -25,7 +17,7 @@ class FirebaseManager {
     private init() {
     }
 
-    public func fetchRCValues(fetchedValue: String, completed: @escaping (Result<String, Error>) -> Void) {
+    public func fetchRCValues(remoteConfigForKey: String, completed: @escaping (Result<String, Error>) -> Void) {
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 0
         remoteConfig.configSettings = settings
@@ -37,7 +29,7 @@ class FirebaseManager {
                         return
                     }
 
-                    self.titleText = self.remoteConfig.configValue(forKey: fetchedValue).stringValue ?? ""
+                    self.titleText = self.remoteConfig.configValue(forKey: remoteConfigForKey).stringValue ?? ""
 
                     completed(.success(self.titleText))
                 }
