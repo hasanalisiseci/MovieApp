@@ -17,6 +17,34 @@ struct MovieDetail: Codable {
     let metascore, imdbRating, imdbVotes, imdbID: String?
     let type, dvd, boxOffice, production: String?
     let website, response: String?
+    
+    init(title: String? = nil, year: String? = nil, rated: String? = nil, released: String? = nil, runtime: String? = nil, genre: String? = nil, director: String? = nil, writer: String? = nil, actors: String? = nil, plot: String? = nil, language: String? = nil, country: String? = nil, awards: String? = nil, poster: String? = nil, ratings: [Rating]? = nil, metascore: String? = nil, imdbRating: String? = nil, imdbVotes: String? = nil, imdbID: String? = nil, type: String? = nil, dvd: String? = nil, boxOffice: String? = nil, production: String? = nil, website: String? = nil, response: String? = nil) {
+        self.title = title
+        self.year = year
+        self.rated = rated
+        self.released = released
+        self.runtime = runtime
+        self.genre = genre
+        self.director = director
+        self.writer = writer
+        self.actors = actors
+        self.plot = plot
+        self.language = language
+        self.country = country
+        self.awards = awards
+        self.poster = poster
+        self.ratings = ratings
+        self.metascore = metascore
+        self.imdbRating = imdbRating
+        self.imdbVotes = imdbVotes
+        self.imdbID = imdbID
+        self.type = type
+        self.dvd = dvd
+        self.boxOffice = boxOffice
+        self.production = production
+        self.website = website
+        self.response = response
+    }
 
     enum CodingKeys: String, CodingKey {
         case title = "Title"
@@ -43,6 +71,7 @@ struct MovieDetail: Codable {
         case website = "Website"
         case response = "Response"
     }
+    
 }
 
 struct Rating: Codable {

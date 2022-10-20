@@ -38,6 +38,7 @@
 		74B2FC5C28FDEFE900A55BB7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC5B28FDEFE900A55BB7 /* String+Extension.swift */; };
 		74B2FC5F28FDF1CE00A55BB7 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC5E28FDF1CE00A55BB7 /* SearchVC.swift */; };
 		74B2FC6328FDF69800A55BB7 /* MAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B2FC6228FDF69800A55BB7 /* MAButton.swift */; };
+		74D96B592901534D00AB6F70 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D96B582901534D00AB6F70 /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		74B2FC5B28FDEFE900A55BB7 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		74B2FC5E28FDF1CE00A55BB7 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		74B2FC6228FDF69800A55BB7 /* MAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAButton.swift; sourceTree = "<group>"; };
+		74D96B582901534D00AB6F70 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 		74B2FC4928FDEE8900A55BB7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				74D96B572901533C00AB6F70 /* DetailVC */,
 				74B2FC5D28FDF1BB00A55BB7 /* SearchVC */,
 				74B2FC4A28FDEE9100A55BB7 /* SplashScreen */,
 			);
@@ -257,6 +260,14 @@
 				747DB2A129001AFC002E658B /* MAFilmCellCollectionViewCell.swift */,
 			);
 			path = SearchVC;
+			sourceTree = "<group>";
+		};
+		74D96B572901533C00AB6F70 /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				74D96B582901534D00AB6F70 /* DetailVC.swift */,
+			);
+			path = DetailVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +356,7 @@
 				7413CD0528FEC66800E899B1 /* MovieDetailModel.swift in Sources */,
 				74B2FC5C28FDEFE900A55BB7 /* String+Extension.swift in Sources */,
 				7413CD0028FEB09D00E899B1 /* Int+Extension.swift in Sources */,
+				74D96B592901534D00AB6F70 /* DetailVC.swift in Sources */,
 				747DB2A829003A30002E658B /* UIHelper.swift in Sources */,
 				7413CCF628FE8A0100E899B1 /* NetworkManager.swift in Sources */,
 				7413CCF828FE8B2E00E899B1 /* MAErrorType.swift in Sources */,

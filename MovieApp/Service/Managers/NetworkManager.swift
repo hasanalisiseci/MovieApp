@@ -66,15 +66,3 @@ struct ErrorModel: Codable, Error {
         case error = "Error"
     }
 }
-
-/*
-  NetworkManager().getMovies(endpoint: OMDbEndpoint.detail("tt0096895", "full").url) { [weak self] (result: Result<MovieDetail, MAErrorType>) in
-      guard let self = self else { return }
-     switch result {
-     case let .success(success):
-         print(success)
-     case let .failure(failure):
-         print(failure)
-     }
- }
- */

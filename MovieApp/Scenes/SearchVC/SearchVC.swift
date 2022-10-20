@@ -56,6 +56,27 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         collectionView.backgroundColor = .systemPink
         collectionView.register(MAFilmCellCollectionViewCell.self, forCellWithReuseIdentifier: MAFilmCellCollectionViewCell.reuseID)
     }
+}
+
+extension SearchVC {
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if searchBar.text?.count == 0 {
+            showAlert(alertText: "Boş Arama Yapılamaz", alertMessage: "Lütfen film adı girin!")
+        } else {
+            movies = []
+            page = 1
+            getMovies(movieTitle: searchBar.text!, page: page)
+        }
+    }
 
     func getMovies(movieTitle: String, page: Int) {
         NetworkManager().getData(endpoint: OMDbEndpoint.search(movieTitle, page)) { [weak self] (result: Result<MoviesResult, MAErrorType>) in
@@ -90,27 +111,6 @@ class SearchVC: UIViewController, UISearchBarDelegate {
     }
 }
 
-extension SearchVC {
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.resignFirstResponder()
-    }
-
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        if searchBar.text?.count == 0 {
-            showAlert(alertText: "Boş Arama Yapılamaz", alertMessage: "Lütfen film adı girin!")
-        } else {
-            movies = []
-            page = 1
-            getMovies(movieTitle: searchBar.text!, page: page)
-        }
-    }
-}
-
 extension SearchVC: UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let ofssetY = scrollView.contentOffset.y
@@ -122,5 +122,9 @@ extension SearchVC: UICollectionViewDelegate {
             page += 1
             getMovies(movieTitle: searchBar.text!, page: page)
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(DetailVC(movie: movies[indexPath.count]), animated: true)
     }
 }
