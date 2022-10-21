@@ -23,16 +23,16 @@ class SearchVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        allConfigure()
+    }
+
+    func allConfigure() {
         view.backgroundColor = .systemPink
         hideKeyboardWhenTappedAround()
         configureSearchBar()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        configuerNavBar()
         configureCollectionView()
         configureDataSource()
+        configuerNavBar()
     }
 
     private func configuerNavBar() {
@@ -79,7 +79,7 @@ extension SearchVC {
         let loadingView: UIView = UIView()
         loadingView.frame = CGRectMake(0, 0, 118, 80)
         loadingView.center = view.center
-        loadingView.backgroundColor = .clear
+        loadingView.backgroundColor = .gray
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
 
@@ -177,7 +177,6 @@ extension SearchVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destVC = DetailVC()
         destVC.movie = movies[indexPath.item]
-        let navController = UINavigationController(rootViewController: destVC)
-        navigationController?.pushViewController(destVC, animated: true)
+        navigationController?.show(destVC, sender: nil)
     }
 }
