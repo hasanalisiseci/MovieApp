@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchVC: UIViewController, UISearchBarDelegate {
+class SearchVC: UIViewController {
     lazy var searchBar: UISearchBar = MASearchBar()
     var isSearch: Bool = false
 
@@ -19,6 +19,7 @@ class SearchVC: UIViewController, UISearchBarDelegate {
 
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,6 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         configureCollectionView()
         configureDataSource()
     }
-    
-
 
     private func configuerNavBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -45,22 +44,74 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         searchBar.delegate = self
         navigationItem.titleView = searchBar
     }
-
-    func createDissmisKeyboardTapGesture() {
-        let dismissKeyboardTap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(dismissKeyboardTap)
-    }
-
-    func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.backgroundColor = .systemPink
-        collectionView.register(MAFilmCellCollectionViewCell.self, forCellWithReuseIdentifier: MAFilmCellCollectionViewCell.reuseID)
-    }
 }
 
 extension SearchVC {
+    func getMovies(movieTitle: String, page: Int) {
+        NetworkManager().getData(endpoint: OMDbEndpoint.search(movieTitle, page)) { [weak self] (result: Result<MoviesResult, MAErrorType>) in
+            guard let self = self else { return }
+            switch result {
+            case let .success(result):
+                if result.movies == nil {
+                    DispatchQueue.main.async {
+                        self.stopIndicator()
+                    }
+                    self.showAlert(alertText: "HATA", alertMessage: "Aradığınız film bulunamadı!")
+                } else {
+                    self.stopIndicator()
+                    self.movies.append(contentsOf: result.movies!)
+                    self.updateData()
+                }
+            case let .failure(failure):
+                self.showAlert(alertText: "HATA", alertMessage: failure.message)
+            }
+        }
+    }
+
+    func startIndicator() {
+        // creating view to background while displaying indicator
+        let container: UIView = UIView()
+        container.frame = view.frame
+        container.center = view.center
+        container.backgroundColor = .clear
+
+        // creating view to display lable and indicator
+        let loadingView: UIView = UIView()
+        loadingView.frame = CGRectMake(0, 0, 118, 80)
+        loadingView.center = view.center
+        loadingView.backgroundColor = .clear
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+
+        // Preparing activity indicator to load
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRectMake(40, 12, 40, 40)
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        loadingView.addSubview(activityIndicator)
+
+        // creating label to display message
+        let label = UILabel(frame: CGRectMake(5, 55, 120, 20))
+        label.text = "Loading..."
+        label.textColor = UIColor.white
+        label.bounds = CGRectMake(0, 0, loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
+        label.font = UIFont.systemFont(ofSize: 12)
+        loadingView.addSubview(label)
+        container.addSubview(loadingView)
+        view.addSubview(container)
+
+        activityIndicator.startAnimating()
+    }
+
+    func stopIndicator() {
+        DispatchQueue.main.async {
+            UIApplication.shared.endIgnoringInteractionEvents()
+            self.activityIndicator.stopAnimating()
+        }
+        ((activityIndicator.superview as UIView?)?.superview as UIView?)?.removeFromSuperview()
+    }
+}
+
+extension SearchVC: UISearchBarDelegate {
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.resignFirstResponder()
     }
@@ -74,27 +125,23 @@ extension SearchVC {
         if searchBar.text?.count == 0 {
             showAlert(alertText: "Boş Arama Yapılamaz", alertMessage: "Lütfen film adı girin!")
         } else {
+            startIndicator()
             movies = []
             page = 1
-            getMovies(movieTitle: searchBar.text!, page: page)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.getMovies(movieTitle: searchBar.text!, page: self.page)
+            })
         }
     }
+}
 
-    func getMovies(movieTitle: String, page: Int) {
-        NetworkManager().getData(endpoint: OMDbEndpoint.search(movieTitle, page)) { [weak self] (result: Result<MoviesResult, MAErrorType>) in
-            guard let self = self else { return }
-            switch result {
-            case let .success(result):
-                if result.movies == nil {
-                    self.showAlert(alertText: "HATA", alertMessage: "Aradığınız film bulunamadı!")
-                } else {
-                    self.movies.append(contentsOf: result.movies!)
-                    self.updateData()
-                }
-            case let .failure(failure):
-                self.showAlert(alertText: "HATA", alertMessage: failure.message)
-            }
-        }
+extension SearchVC: UICollectionViewDelegate {
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.backgroundColor = .systemPink
+        collectionView.register(MAFilmCellCollectionViewCell.self, forCellWithReuseIdentifier: MAFilmCellCollectionViewCell.reuseID)
     }
 
     func configureDataSource() {
@@ -111,9 +158,7 @@ extension SearchVC {
         snapshot.appendItems(movies)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
-}
 
-extension SearchVC: UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let ofssetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -122,7 +167,10 @@ extension SearchVC: UICollectionViewDelegate {
         if ofssetY > contentHeight - height {
             guard hasMoreMovie else { return }
             page += 1
-            getMovies(movieTitle: searchBar.text!, page: page)
+            startIndicator()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [self] in
+                self.getMovies(movieTitle: searchBar.text!, page: self.page)
+            })
         }
     }
 
