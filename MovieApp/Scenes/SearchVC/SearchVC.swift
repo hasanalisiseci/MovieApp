@@ -26,13 +26,16 @@ class SearchVC: UIViewController {
         allConfigure()
     }
 
-    func allConfigure() {
-        view.backgroundColor = .systemPink
-        hideKeyboardWhenTappedAround()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configuerNavBar()
         configureSearchBar()
+    }
+
+    func allConfigure() {
+        hideKeyboardWhenTappedAround()
         configureCollectionView()
         configureDataSource()
-        configuerNavBar()
     }
 
     private func configuerNavBar() {
@@ -52,15 +55,15 @@ extension SearchVC {
             guard let self = self else { return }
             switch result {
             case let .success(result):
-                if result.movies == nil {
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    if result.movies == nil {
                         self.stopIndicator()
+                        self.showAlert(alertText: "HATA", alertMessage: "Aradığınız film bulunamadı!")
+                    } else {
+                        self.stopIndicator()
+                        self.movies.append(contentsOf: result.movies!)
+                        self.updateData()
                     }
-                    self.showAlert(alertText: "HATA", alertMessage: "Aradığınız film bulunamadı!")
-                } else {
-                    self.stopIndicator()
-                    self.movies.append(contentsOf: result.movies!)
-                    self.updateData()
                 }
             case let .failure(failure):
                 self.showAlert(alertText: "HATA", alertMessage: failure.message)
@@ -69,13 +72,11 @@ extension SearchVC {
     }
 
     func startIndicator() {
-        // creating view to background while displaying indicator
         let container: UIView = UIView()
         container.frame = view.frame
         container.center = view.center
         container.backgroundColor = .clear
 
-        // creating view to display lable and indicator
         let loadingView: UIView = UIView()
         loadingView.frame = CGRectMake(0, 0, 118, 80)
         loadingView.center = view.center
@@ -83,13 +84,11 @@ extension SearchVC {
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
 
-        // Preparing activity indicator to load
         activityIndicator = UIActivityIndicatorView()
         activityIndicator.frame = CGRectMake(40, 12, 40, 40)
         activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         loadingView.addSubview(activityIndicator)
 
-        // creating label to display message
         let label = UILabel(frame: CGRectMake(5, 55, 120, 20))
         label.text = "Loading..."
         label.textColor = UIColor.white
@@ -120,6 +119,12 @@ extension SearchVC: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == "" {
+            configureDataSource()
+        }
+    }
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if searchBar.text?.count == 0 {
@@ -140,7 +145,7 @@ extension SearchVC: UICollectionViewDelegate {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
         collectionView.delegate = self
-        collectionView.backgroundColor = .systemPink
+        collectionView.backgroundColor = .appColor(.collectionViewBG)
         collectionView.register(MAFilmCellCollectionViewCell.self, forCellWithReuseIdentifier: MAFilmCellCollectionViewCell.reuseID)
     }
 

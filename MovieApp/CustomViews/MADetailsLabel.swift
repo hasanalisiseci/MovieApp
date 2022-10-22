@@ -1,13 +1,13 @@
 //
-//  MACellPropertyLabel.swift
+//  MADetailsLabel.swift
 //  MovieApp
 //
-//  Created by Hasan Ali Şişeci on 19.10.2022.
+//  Created by Hasan Ali Şişeci on 22.10.2022.
 //
 
 import UIKit
 
-class MACellPropertyLabel: UILabel {
+class MADetailsLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -17,17 +17,18 @@ class MACellPropertyLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(textAlignment: NSTextAlignment) {
+    init() {
         super.init(frame: .zero)
-        self.textAlignment = textAlignment
         configure()
     }
 
     private func configure() {
         textColor = .systemBackground
+        textAlignment = .left
         font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.75
+        numberOfLines = 0
         lineBreakMode = .byWordWrapping
         translatesAutoresizingMaskIntoConstraints = false
     }
