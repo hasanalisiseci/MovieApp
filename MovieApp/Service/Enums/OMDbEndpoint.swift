@@ -35,7 +35,7 @@ enum OMDbEndpoint {
     }
 
     var url: String {
-       fullPath
+        fullPath
     }
 }
 

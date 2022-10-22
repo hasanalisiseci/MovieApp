@@ -23,7 +23,7 @@ class MADetailImageView: UIImageView {
     private func configure() {
         clipsToBounds = true
         image = placeholderImage
-        contentMode = .scaleAspectFill
+        contentMode = .scaleToFill
         translatesAutoresizingMaskIntoConstraints = false
     }
 

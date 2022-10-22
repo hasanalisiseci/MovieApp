@@ -17,7 +17,7 @@ struct MovieDetail: Codable {
     let metascore, imdbRating, imdbVotes, imdbID: String?
     let type, dvd, boxOffice, production: String?
     let website, response: String?
-    
+
     init(title: String? = nil, year: String? = nil, rated: String? = nil, released: String? = nil, runtime: String? = nil, genre: String? = nil, director: String? = nil, writer: String? = nil, actors: String? = nil, plot: String? = nil, language: String? = nil, country: String? = nil, awards: String? = nil, poster: String? = nil, ratings: [Rating]? = nil, metascore: String? = nil, imdbRating: String? = nil, imdbVotes: String? = nil, imdbID: String? = nil, type: String? = nil, dvd: String? = nil, boxOffice: String? = nil, production: String? = nil, website: String? = nil, response: String? = nil) {
         self.title = title
         self.year = year
@@ -71,7 +71,6 @@ struct MovieDetail: Codable {
         case website = "Website"
         case response = "Response"
     }
-    
 }
 
 struct Rating: Codable {

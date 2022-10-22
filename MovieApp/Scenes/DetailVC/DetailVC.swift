@@ -34,7 +34,6 @@ class DetailVC: UIViewController {
     var movieSynopsisTitleLabel = MATitleLabel(textAlignment: .left, fontSize: 18, color: .systemBackground)
     var movieSynopsisLabel = MADetailsLabel()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appColor(.collectionViewBG)
@@ -46,16 +45,20 @@ class DetailVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
+    override func viewDidLayoutSubviews() {
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 150)
+    }
+
     func getMovieDetails() {
-        NetworkManager().getData(endpoint: OMDbEndpoint.detail(movie.imdbID!, "full")) { [weak self] (result: Result<MovieDetail, MAErrorType>) in
+        NetworkManager().getData(endpoint: OMDbEndpoint.detail(movie.imdbID!, "short")) { [weak self] (result: Result<MovieDetail, MAErrorType>) in
             guard let self = self else { return }
             switch result {
             case let .success(data):
                 self.detailedMovie = data
                 DispatchQueue.main.async {
                     self.set()
+                    FirebaseManager.shared.logFilmDetails(title: "\(self.detailedMovie.title!)", detail: "\(self.detailedMovie.title!) is directed by \(self.detailedMovie.director!)")
                 }
-                print(self.detailedMovie as Any)
             case let .failure(failure):
                 print(failure)
             }
@@ -125,7 +128,7 @@ class DetailVC: UIViewController {
             detailPosterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             detailPosterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             detailPosterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            detailPosterImage.heightAnchor.constraint(equalToConstant: 200),
+            detailPosterImage.heightAnchor.constraint(equalToConstant: 350),
 
             movieTitleLabel.topAnchor.constraint(equalTo: detailPosterImage.bottomAnchor, constant: bigPadding),
             movieTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
@@ -240,8 +243,5 @@ class DetailVC: UIViewController {
         contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 300)
     }
 }
-

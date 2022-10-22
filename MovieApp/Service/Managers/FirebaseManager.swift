@@ -5,6 +5,7 @@
 //  Created by Hasan Ali Şişeci on 18.10.2022.
 //
 
+import FirebaseAnalytics
 import FirebaseRemoteConfig
 import Foundation
 
@@ -37,5 +38,13 @@ class FirebaseManager {
                 completed(.failure(error!))
             }
         }
+    }
+
+    public func logFilmDetails(title: String, detail: String) {
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "id-\(title)",
+            AnalyticsParameterItemName: detail,
+            AnalyticsParameterContentType: "cont",
+        ])
     }
 }
