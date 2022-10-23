@@ -72,17 +72,17 @@ class DetailVC: UIViewController {
         movieRuntimeLabel.text = detailedMovie.runtime
         rateIconView.configure(iconName: "star")
         movieImdbRateLabel.text = "\(detailedMovie.imdbRating!) (IMDb)"
-        movieReleaseDateTitleLabel.text = "Release Date"
+        movieReleaseDateTitleLabel.text = Constants.release_date_title
         movieReleaseDateLabel.text = detailedMovie.released
-        movieGenreTitleLabel.text = "Genre"
+        movieGenreTitleLabel.text = Constants.genre_title
         movieGenreLabel.text = detailedMovie.genre
-        movieDirectorTitleLabel.text = "Director"
+        movieDirectorTitleLabel.text = Constants.director_title
         movieDirectorLabel.text = detailedMovie.director
-        movieWritersTitleLabel.text = "Writer(s)"
+        movieWritersTitleLabel.text = Constants.writer_title
         movieWritersLabel.text = detailedMovie.writer
-        movieActorsTitleLabel.text = "Actors"
+        movieActorsTitleLabel.text = Constants.actors_title
         movieActorsLabel.text = detailedMovie.actors
-        movieSynopsisTitleLabel.text = "Synopsis"
+        movieSynopsisTitleLabel.text = Constants.synopsis_title
         movieSynopsisLabel.text = detailedMovie.plot
     }
 

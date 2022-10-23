@@ -1,13 +1,26 @@
-/* 
-  Localizable.strings
-  MovieApp
+/*
+   Localizable.strings
+   MovieApp
 
-  Created by Hasan Ali Şişeci on 17.10.2022.
-  
-*/
+   Created by Hasan Ali Şişeci on 17.10.2022.
+
+ */
 "alert_network_problem_title" = "Network Problem";
 "alert_network_problem_description" = "Check your internet connect.";
 "fetch_problem_title" = "Fetch problem";
 "okay" = "OK";
 "search_movie_name" = "Search movie name...";
 "search" = "Search Movie";
+"havent_searched_yet" = "You haven't searched for a movie yet 😔";
+"loading_title" = "Loading";
+"alert_title" = "MovieApp says sorry.";
+"movie_not_found" = "The movie you were looking for was not found!";
+"no_more_movie_description" = "No more movies found!";
+"blank_search_alert_title" = "Cannot Search Blank";
+"please_enter_movie_name" = "Please enter movie name!";
+"release_date_title" = "Release Date";
+"genre_title" = "Genre";
+"director_title" = "Director";
+"writer_title" = "Writer(s)";
+"actors_title" = "Actors";
+"synopsis_title" = "Synopsis";

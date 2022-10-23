@@ -58,7 +58,12 @@ extension SearchVC {
                 DispatchQueue.main.async {
                     if result.movies == nil {
                         self.stopIndicator()
-                        self.showAlert(alertText: "HATA", alertMessage: "Aradığınız film bulunamadı!")
+                        if self.movies.isEmpty {
+                            self.showAlert(alertText: Constants.alert_title, alertMessage: Constants.movie_not_found_description)
+                        } else {
+                            self.showAlert(alertText: Constants.alert_title, alertMessage: Constants.no_more_movie_description)
+                        }
+
                     } else {
                         self.stopIndicator()
                         self.movies.append(contentsOf: result.movies!)
@@ -66,7 +71,7 @@ extension SearchVC {
                     }
                 }
             case let .failure(failure):
-                self.showAlert(alertText: "HATA", alertMessage: failure.message)
+                self.showAlert(alertText: Constants.alert_title, alertMessage: failure.message)
             }
         }
     }
@@ -90,7 +95,7 @@ extension SearchVC {
         loadingView.addSubview(activityIndicator)
 
         let label = UILabel(frame: CGRectMake(5, 55, 120, 20))
-        label.text = "Loading..."
+        label.text = Constants.loading_title
         label.textColor = UIColor.white
         label.bounds = CGRectMake(0, 0, loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
         label.font = UIFont.systemFont(ofSize: 12)
@@ -122,14 +127,16 @@ extension SearchVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == "" {
             configureDataSource()
+            collectionView.setHaventSearch(Constants.havent_searched_yet)
         }
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if searchBar.text?.count == 0 {
-            showAlert(alertText: "Boş Arama Yapılamaz", alertMessage: "Lütfen film adı girin!")
+            showAlert(alertText: Constants.blank_search_alert_title, alertMessage: Constants.please_enter_movie_name)
         } else {
+            collectionView.restore()
             startIndicator()
             movies = []
             page = 1
@@ -147,6 +154,7 @@ extension SearchVC: UICollectionViewDelegate {
         collectionView.delegate = self
         collectionView.backgroundColor = .appColor(.collectionViewBG)
         collectionView.register(MAFilmCellCollectionViewCell.self, forCellWithReuseIdentifier: MAFilmCellCollectionViewCell.reuseID)
+        collectionView.setHaventSearch(Constants.havent_searched_yet)
     }
 
     func configureDataSource() {
@@ -172,6 +180,7 @@ extension SearchVC: UICollectionViewDelegate {
         if ofssetY > contentHeight - height {
             guard hasMoreMovie else { return }
             page += 1
+
             startIndicator()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [self] in
                 self.getMovies(movieTitle: searchBar.text!, page: self.page)
@@ -183,5 +192,23 @@ extension SearchVC: UICollectionViewDelegate {
         let destVC = DetailVC()
         destVC.movie = movies[indexPath.item]
         navigationController?.show(destVC, sender: nil)
+    }
+}
+
+extension UICollectionView {
+    func setHaventSearch(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .white
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont(name: "TrebuchetMS", size: 28)
+        messageLabel.sizeToFit()
+
+        backgroundView = messageLabel
+    }
+
+    func restore() {
+        backgroundView = nil
     }
 }

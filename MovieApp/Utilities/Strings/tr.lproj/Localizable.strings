@@ -11,3 +11,16 @@
 "okay" = "Tamam";
 "search_movie_name" = "Film ismi arayın";
 "search" = "Film Ara";
+"havent_searched_yet" = "Henüz film aramadınız 😔";
+"loading_title" = "Yükleniyor";
+"alert_title" = "MovieApp üzülerek söylüyor.";
+"movie_not_found_description" = "Aradığınız film bulunamadı!";
+"no_more_movie_description" = "Daha fazla film bulunamadı!";
+"blank_search_alert_title" = "Boş Arama Yapılamaz";
+"please_enter_movie_name" = "Lütfen film adı girin!";
+"release_date_title" = "Yayın tarihi";
+"genre_title" = "Tür";
+"director_title" = "Yönetmen";
+"writer_title" = "Yazar(lar)";
+"actors_title" = "Oyuncular";
+"synopsis_title" = "Özet";
