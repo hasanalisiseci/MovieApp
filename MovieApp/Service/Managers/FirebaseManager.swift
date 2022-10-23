@@ -41,10 +41,8 @@ class FirebaseManager {
     }
 
     public func logFilmDetails(title: String, detail: String) {
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "id-\(title)",
-            AnalyticsParameterItemName: detail,
-            AnalyticsParameterContentType: "cont",
+        Analytics.logEvent("id_\(title.replacingOccurrences(of: " ", with: "_"))", parameters: [
+            "detail": detail,
         ])
     }
 }
